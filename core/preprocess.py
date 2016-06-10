@@ -12,3 +12,7 @@ preprocess = Blueprint('preprocess', __name__, url_prefix='/preprocess')
 @preprocess.route('/cutwords/zh')
 def cutWords():
 	return 'error'
+
+@preprocess.route('/compoundwords/mc')
+def cw_mc():
+	return 'error'
