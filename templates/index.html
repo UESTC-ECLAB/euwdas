@@ -1,38 +1,134 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta name="format-detection" content="telephone=no">
+    <script type="text/javascript" src="{{ url_for('static', filename='html/js/jquery-1.8.3.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='html/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='html/js/in-min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='html/js/spotlight.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='html/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='html/css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='html/css/new.css') }}">
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            $('.J_search').submit(function(e) {
+                var _node = $(this);
+                var query = _node.find('input').val();
+                e.preventDefault();
+                window.open('http://www.google.com/search?q=site:ec-lab.com/t%20' + query, "_blank");
+            });
+        });
+    </script>
+    <style type="text/css">
+        .totop a {
+            display: block;
+            width: 40px;
+            height: 35px;
+            background: url('/static/images/totop.gif') no-repeat;
+            text-indent: -9999px;
+            text-decoration: none;
+        }
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>demo</title>
-
-    <!-- Bootstrap Core CSS -->
-    <style>
-    img {
-        border: 2px solid #cccccc;
-        border-radius: 50%;
-        height: 200px;
-        width: 200px;
-    }
+        .totop a:hover {
+            background-position: 0 -35px;
+        }
     </style>
+    <title>EC-Lab</title>
 </head>
 
 <body>
-    <p align="center">
-        <img src="{{ url_for('static', filename='test/test.jpg') }}" />
-    </p>
-    <h1 align="center">The Website is Developing</h1>
-    <h2 align="center">Using Flask O(∩_∩)O哈哈~</h2>
-    <address align="center">
-  	    <strong>If u wanna to help, u can go to</strong><br>
-        <a href="https://github.com/UESTC-ECLAB/euwdas">https://github.com/UESTC-ECLAB/euwdas</a>
-    </address>
-<script>
-</script>
+
+<div class="navbar navbar-inverse navbar-fixed-top top-navbar">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="/">EC-Lab</a>
+            <div class="divider-vertical"></div>
+                        <div class="nav-collapse collapse">
+            
+                <ul class="nav">
+                                            <li class="active">
+                            <a href="/" class="item-topic">首页</a>
+                        </li>
+                                            <li>
+                            <a href="/" class="item-members">实验室介绍</a>
+                        </li>
+                                            <li>
+                            <a href="/" class="item-book">新闻公告</a>
+                        </li>
+                                            <li>
+                            <a href="/" class="item-timeline">数据挖掘平台</a>
+                        </li>
+                                            <li>
+                            <a href="/" class="item-nav">BBS</a>
+                        </li>
+                                    </ul>
+            </div>
+            <!--/.nav-collapse -->
+            <form class="navbar-search pull-left J_search">
+                <input type="text" class="search-query" placeholder="" x-webkit-speech="">
+            </form>
+            <div class="nav-collapse collapse pull-right">
+                <ul class="nav account-menu">
+                                           <!--  <li><a href="/">首页</a></li> -->
+                    <li><a href="/"><span class="">登录</span></a></li>
+                    <li><a href="/" class="">注册</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="spotlight">
+    <div class="container">
+        <div class="slideshow" data-editable="type=list;name=slideshow"  data-type="fade" data-interval="10000" data-animation-time="1000">
+        <div class="slides-wrapper">
+                <a class="slide active" >
+                <img src="{{ url_for('static', filename='test/slide1.jpg') }}" alt="" />
+                <div class="carousel-caption">
+                <h3>hahahahah</h3>
+                <p>hhhh</p>
+                </div>
+                </a>
+                <a class="slide " >
+                <img src="{{ url_for('static', filename='test/slide2.jpg') }}" alt="" />
+                </a>
+
+        </div>
+        <div class="indicators">
+                    <a class="indicator active" href="#" data-slide="1"></a>
+                    <a class="indicator " href="#" data-slide="2"></a>
+        </div>
+        </div>
+    </div>
+    
+</div>
+
+
+
+<div class="footer mt15">
+    <div class="container">
+        <div class="footer-bg">
+            <p class="links">
+                <span>©2016</span>
+                <span>Powered by Flask</span>
+                <span>, All rights reserved.</span>
+            </p>
+                        <p class="fade-color">
+                                <span>Ruyi Yin</span>
+            </p>
+                    </div>
+    </div>
+</div>
+<div style="display: none;"></div>
 
 </body>
 
