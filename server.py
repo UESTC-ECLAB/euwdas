@@ -10,6 +10,6 @@ from app import create_app
 app = create_app()
 if __name__ == '__main__':
     app.run(host='0.0.0.0', threaded=True)
-    app.debug = True
+    app.debug = False
     server = WSGIServer(("", 80), app)
     server.serve_forever()
