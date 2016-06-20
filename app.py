@@ -27,12 +27,16 @@ def create_app():
 
     @_app.route('/')
     def homepage():
-    	return render_template('index.html')
+        return render_template('index.html')
 
     @_app.route('/test')
     def testpage():
-    	return 'test'
-    	
+        return 'test'
+
+    @_app.route('/develop')
+    def develppage():
+        return render_template('develop.html') 
+
     return _app
 
 def configure_jinja2(app):
