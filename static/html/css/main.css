@@ -1091,9 +1091,10 @@ a.btn {
 
 .row-fluid .left {
   width: 70.468%;
-  min-height: 750px; }
+  min-height: initial; }
 .row-fluid .right {
-  width: 27.404%; }
+  width: 27.404%;
+  min-height: initial; }
 
 .news {
   margin: 0; }

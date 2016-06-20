@@ -13,3 +13,10 @@
 #spotlight .slideshow .slide.active { z-index:3;}
 #spotlight .container { position:relative;}
 
+.row-fluid .newleft {
+  width: 27.404%;
+  min-height: initial;
+  }
+.row-fluid .newright {
+  width: 70.468%;
+  min-height: initial;  }

@@ -55,22 +55,22 @@
                         <div class="nav-collapse collapse">
             
                 <ul class="nav">
-                                            <li class="active">
+                        <li class="active">
                             <a href="/" class="item-topic">首页</a>
                         </li>
-                                            <li>
-                            <a href="/" class="item-members">实验室介绍</a>
+                        <li>
+                            <a href="/develop" class="item-members">实验室简介</a>
                         </li>
-                                            <li>
-                            <a href="/" class="item-book">新闻公告</a>
+                        <li>
+                            <a href="/develop" class="item-book">新闻</a>
                         </li>
-                                            <li>
-                            <a href="/" class="item-timeline">数据挖掘平台</a>
+                        <li>
+                            <a href="/develop" class="item-timeline">数据挖掘平台</a>
                         </li>
-                                            <li>
-                            <a href="/" class="item-nav">BBS</a>
+                        <li>
+                            <a href="/develop" class="item-nav">BBS</a>
                         </li>
-                                    </ul>
+                </ul>
             </div>
             <!--/.nav-collapse -->
             <form class="navbar-search pull-left J_search">
@@ -79,8 +79,8 @@
             <div class="nav-collapse collapse pull-right">
                 <ul class="nav account-menu">
                                            <!--  <li><a href="/">首页</a></li> -->
-                    <li><a href="/"><span class="">登录</span></a></li>
-                    <li><a href="/" class="">注册</a></li>
+                    <li><a href="/develop"><span class="">登录</span></a></li>
+                    <li><a href="/develop" class="">注册</a></li>
                 </ul>
             </div>
         </div>
@@ -92,20 +92,24 @@
         <div class="slideshow" data-editable="type=list;name=slideshow"  data-type="fade" data-interval="10000" data-animation-time="1000">
         <div class="slides-wrapper">
                 <a class="slide active" >
-                <img src="{{ url_for('static', filename='test/slide1.jpg') }}" alt="" />
-                <div class="carousel-caption">
+                <img src="{{ url_for('static', filename='html/image/homepage1.jpg') }}" alt="" />
+<!--                 <div class="carousel-caption">
                 <h3>hahahahah</h3>
                 <p>hhhh</p>
-                </div>
+                </div> -->
                 </a>
                 <a class="slide " >
-                <img src="{{ url_for('static', filename='test/slide2.jpg') }}" alt="" />
+                <img src="{{ url_for('static', filename='html/image/homepage2.jpg') }}" alt="" />
+                </a>
+                <a class="slide " >
+                <img src="{{ url_for('static', filename='html/image/homepage3.jpg') }}" alt="" />
                 </a>
 
         </div>
         <div class="indicators">
                     <a class="indicator active" href="#" data-slide="1"></a>
                     <a class="indicator " href="#" data-slide="2"></a>
+                    <a class="indicator " href="#" data-slide="3"></a>
         </div>
         </div>
     </div>    
@@ -115,10 +119,10 @@
     <div class="row-fluid">
     <!-- 左边栏 -->
         <div class="span9 left">
-            <div class="topics container-box deprecated-mt10">
+        <div class="topics container-box deprecated-mt10">
         <div class="ui-header">
             <span class="bread-nav">
-                <a class="node-link" href="http://f2e.im/node/share">新闻</a>
+                <a class="node-link" href="http://f2e.im/node/share">新闻推荐</a>
             </span>
             </div>
 
@@ -146,6 +150,206 @@
                 <div class="count"><a href="/">阅读3</a></div>
                 </div>
                 <!-- 新闻结束！！ -->
+                <!-- 没用新闻 -->
+                                <div class="topic-item">
+                    <a href="/">
+                        <img src="./" alt="" class="avatar">
+                    </a>
+                    <div class="main">
+                    <h3 class="title">
+                        <a href="/">新闻标题1</a>
+                    </h3>
+                    <div class="meta">
+                        <span class="node"><a href="/">tag1</a></span>
+                        <span class="node"><a href="/">tag2</a></span> • 
+                        <span class="username">
+                            <a href="/">作者1</a>
+                            </span> • 
+                            <span class="last-touched">7 月前</span> • 
+                            <span class="last-reply-username">来自
+                            <a href="/"><strong>XX网站</strong></a>
+                        </span>
+                    </div>
+                </div>
+                <div class="count"><a href="/">阅读3</a></div>
+                </div>
+                                <div class="topic-item">
+                    <a href="/">
+                        <img src="./" alt="" class="avatar">
+                    </a>
+                    <div class="main">
+                    <h3 class="title">
+                        <a href="/">新闻标题1</a>
+                    </h3>
+                    <div class="meta">
+                        <span class="node"><a href="/">tag1</a></span>
+                        <span class="node"><a href="/">tag2</a></span> • 
+                        <span class="username">
+                            <a href="/">作者1</a>
+                            </span> • 
+                            <span class="last-touched">7 月前</span> • 
+                            <span class="last-reply-username">来自
+                            <a href="/"><strong>XX网站</strong></a>
+                        </span>
+                    </div>
+                </div>
+                <div class="count"><a href="/">阅读3</a></div>
+                </div>
+                                <div class="topic-item">
+                    <a href="/">
+                        <img src="./" alt="" class="avatar">
+                    </a>
+                    <div class="main">
+                    <h3 class="title">
+                        <a href="/">新闻标题1</a>
+                    </h3>
+                    <div class="meta">
+                        <span class="node"><a href="/">tag1</a></span>
+                        <span class="node"><a href="/">tag2</a></span> • 
+                        <span class="username">
+                            <a href="/">作者1</a>
+                            </span> • 
+                            <span class="last-touched">7 月前</span> • 
+                            <span class="last-reply-username">来自
+                            <a href="/"><strong>XX网站</strong></a>
+                        </span>
+                    </div>
+                </div>
+                <div class="count"><a href="/">阅读3</a></div>
+                </div>
+                                <div class="topic-item">
+                    <a href="/">
+                        <img src="./" alt="" class="avatar">
+                    </a>
+                    <div class="main">
+                    <h3 class="title">
+                        <a href="/">新闻标题1</a>
+                    </h3>
+                    <div class="meta">
+                        <span class="node"><a href="/">tag1</a></span>
+                        <span class="node"><a href="/">tag2</a></span> • 
+                        <span class="username">
+                            <a href="/">作者1</a>
+                            </span> • 
+                            <span class="last-touched">7 月前</span> • 
+                            <span class="last-reply-username">来自
+                            <a href="/"><strong>XX网站</strong></a>
+                        </span>
+                    </div>
+                </div>
+                <div class="count"><a href="/">阅读3</a></div>
+                </div>
+                                <div class="topic-item">
+                    <a href="/">
+                        <img src="./" alt="" class="avatar">
+                    </a>
+                    <div class="main">
+                    <h3 class="title">
+                        <a href="/">新闻标题1</a>
+                    </h3>
+                    <div class="meta">
+                        <span class="node"><a href="/">tag1</a></span>
+                        <span class="node"><a href="/">tag2</a></span> • 
+                        <span class="username">
+                            <a href="/">作者1</a>
+                            </span> • 
+                            <span class="last-touched">7 月前</span> • 
+                            <span class="last-reply-username">来自
+                            <a href="/"><strong>XX网站</strong></a>
+                        </span>
+                    </div>
+                </div>
+                <div class="count"><a href="/">阅读3</a></div>
+                </div>
+                                <div class="topic-item">
+                    <a href="/">
+                        <img src="./" alt="" class="avatar">
+                    </a>
+                    <div class="main">
+                    <h3 class="title">
+                        <a href="/">新闻标题1</a>
+                    </h3>
+                    <div class="meta">
+                        <span class="node"><a href="/">tag1</a></span>
+                        <span class="node"><a href="/">tag2</a></span> • 
+                        <span class="username">
+                            <a href="/">作者1</a>
+                            </span> • 
+                            <span class="last-touched">7 月前</span> • 
+                            <span class="last-reply-username">来自
+                            <a href="/"><strong>XX网站</strong></a>
+                        </span>
+                    </div>
+                </div>
+                <div class="count"><a href="/">阅读3</a></div>
+                </div>
+                                <div class="topic-item">
+                    <a href="/">
+                        <img src="./" alt="" class="avatar">
+                    </a>
+                    <div class="main">
+                    <h3 class="title">
+                        <a href="/">新闻标题1</a>
+                    </h3>
+                    <div class="meta">
+                        <span class="node"><a href="/">tag1</a></span>
+                        <span class="node"><a href="/">tag2</a></span> • 
+                        <span class="username">
+                            <a href="/">作者1</a>
+                            </span> • 
+                            <span class="last-touched">7 月前</span> • 
+                            <span class="last-reply-username">来自
+                            <a href="/"><strong>XX网站</strong></a>
+                        </span>
+                    </div>
+                </div>
+                <div class="count"><a href="/">阅读3</a></div>
+                </div>
+                                <div class="topic-item">
+                    <a href="/">
+                        <img src="./" alt="" class="avatar">
+                    </a>
+                    <div class="main">
+                    <h3 class="title">
+                        <a href="/">新闻标题1</a>
+                    </h3>
+                    <div class="meta">
+                        <span class="node"><a href="/">tag1</a></span>
+                        <span class="node"><a href="/">tag2</a></span> • 
+                        <span class="username">
+                            <a href="/">作者1</a>
+                            </span> • 
+                            <span class="last-touched">7 月前</span> • 
+                            <span class="last-reply-username">来自
+                            <a href="/"><strong>XX网站</strong></a>
+                        </span>
+                    </div>
+                </div>
+                <div class="count"><a href="/">阅读3</a></div>
+                </div>
+                                <div class="topic-item">
+                    <a href="/">
+                        <img src="./" alt="" class="avatar">
+                    </a>
+                    <div class="main">
+                    <h3 class="title">
+                        <a href="/">新闻标题1</a>
+                    </h3>
+                    <div class="meta">
+                        <span class="node"><a href="/">tag1</a></span>
+                        <span class="node"><a href="/">tag2</a></span> • 
+                        <span class="username">
+                            <a href="/">作者1</a>
+                            </span> • 
+                            <span class="last-touched">7 月前</span> • 
+                            <span class="last-reply-username">来自
+                            <a href="/"><strong>XX网站</strong></a>
+                        </span>
+                    </div>
+                </div>
+                <div class="count"><a href="/">阅读3</a></div>
+                </div>
+                <!-- 没用新闻结束 -->
 
             </div>
 
@@ -156,8 +360,8 @@
         <div class="login-box container-box">
             <div class="ui-header">
                 <span class="title">
-                    <div class="explanation">EC-Lab</div>
-                    <div class="description">一句话</div>
+                    <div class="explanation">EC-Lab,SME,UESTC</div>
+                    <div class="description">电子商务实验室<br>经济与管理学院,电子科技大学</div>
                 </span>
             </div>
             <div class="ui-content tc">
@@ -183,14 +387,14 @@
             <span class="title">本站快链</span>
         </div>
         <div class="ui-content">
-                            <a href="/">哈哈</a>
-                            <a href="/">帮助</a>
-                            <a href="/">Sublime</a>
-                            <a href="/">CoffeeScript</a>
+                            <a href="/">快链1</a>
+                            <a href="/">快链2</a>
+                            <a href="/">快链10</a>
+                            <a href="/">快链1t</a>
                             <a href="/">意见反馈</a>
-                            <a href="/">VIM</a>
-                            <a href="/">JavaScript</a>
-                            <a href="/">Git</a>
+                            <a href="/">快链1</a>
+                            <a href="/">快链1a</a>
+                            <a href="/">快链1</a>
                     </div>
         </div>
         <!-- 右边栏项目2 -->
@@ -199,12 +403,13 @@
             <span class="title">友情链接</span>
         </div>
         <div class="ui-content">
-            <p><a href="/"><img src="/static/images/python_china_logo.jpg" alt="" /></a></p>
-            <p><a href="/"><img src="/static/images/ruby_china_logo.png" alt="" /></a></p>
-            <p><a href="/"><img src="/static/images/coding_logo.png" alt="" style="width:80%;" /></a></p>
+        <!-- 300px70px -->
+            <p><a href="http://www.uestc.edu.cn/"><img src="{{ url_for('static', filename='html/image/friend1.jpg') }}" alt="" /></a></p>
+            <p><a href="http://www.mgmt.uestc.edu.cn/"><img src="{{ url_for('static', filename='html/image/friend2.jpg') }}" alt="" /></a></p>
+            <!-- <p><a href="/"><img src="/static/images/coding_logo.png" alt="" style="width:80%;" /></a></p>
             <p><a href="/"><img src="/static/images/angularjs_cn_logo.png" alt="" style="width:90%;" /></a></p>
             <p><a href="/"><img src="/static/images/teambition_logo.png" alt="" style="width:80%; margin:5px 0 15px 10px;" /></a></p>
-            <p><a href="/"><img src="/static/images/ionic-logo-for-friends.png" alt="" style="width:180px;" /></a></p>
+            <p><a href="/"><img src="/static/images/ionic-logo-for-friends.png" alt="" style="width:180px;" /></a></p> -->
         </div>
         </div>
         <!-- 右边栏项目2 -->
@@ -219,10 +424,10 @@
                 <span>Powered by Flask</span>
                 <span>, All rights reserved.</span>
             </p>
-                        <p class="fade-color">
-                                <span>Ruyi Yin</span>
+            <p class="fade-color">
+                <span>Ruyi Yin</span>
             </p>
-                    </div>
+        </div>
     </div>
 </div>
 <div style="display: none;"></div>
