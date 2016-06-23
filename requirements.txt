@@ -1,1 +1,2 @@
 pip install gevent -i http://mirrors.aliyun.com/pypi/simple/
+pip install flask-mongoengine

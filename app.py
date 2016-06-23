@@ -33,6 +33,10 @@ def create_app():
     def testpage():
         return 'test'
 
+    @_app.route('/login')
+    def login():
+        return render_template('login.html')
+
     @_app.route('/develop')
     def develppage():
         return render_template('develop.html') 

@@ -20,3 +20,7 @@
 .row-fluid .newright {
   width: 70.468%;
   min-height: initial;  }
+
+.loginpage {
+  min-height: 750px;
+}
