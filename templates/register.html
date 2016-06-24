@@ -5,11 +5,12 @@
     <!-- 左边栏 -->
         <div class="span9 left">
             <div class="container-box">
-                <form class="form-horizontal" action='' method="POST">
+                <form class="form-horizontal" action='register' method="POST">
                     <fieldset>
                         <div id="legend" class="mb50">
                             <legend class="">注册</legend>
                         </div>
+                        {{ errors }}
                         <div class="control-group">
                             <!-- Username -->
                             <label class="control-label" for="username">用户名</label>
