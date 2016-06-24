@@ -37,6 +37,10 @@ def create_app():
     def login():
         return render_template('login.html')
 
+    @_app.route('/register')
+    def register():
+        return render_template('register.html')
+
     @_app.route('/develop')
     def develppage():
         return render_template('develop.html') 

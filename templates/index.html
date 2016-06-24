@@ -1,122 +1,40 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-    <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-    <meta content="yes" name="apple-mobile-web-app-capable">
-    <meta content="black" name="apple-mobile-web-app-status-bar-style">
-    <meta name="format-detection" content="telephone=no">
-    <script type="text/javascript" src="{{ url_for('static', filename='html/js/jquery-1.8.3.min.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='html/js/bootstrap.min.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='html/js/in-min.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='html/js/spotlight.js') }}"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='html/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='html/css/main.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='html/css/new.css') }}">
-    <script type="text/javascript">
-        jQuery(document).ready(function() {
-            $('.J_search').submit(function(e) {
-                var _node = $(this);
-                var query = _node.find('input').val();
-                e.preventDefault();
-                window.open('http://www.google.com/search?q=site:ec-lab.com/t%20' + query, "_blank");
-            });
-        });
-    </script>
-    <style type="text/css">
-        .totop a {
-            display: block;
-            width: 40px;
-            height: 35px;
-            background: url('/static/images/totop.gif') no-repeat;
-            text-indent: -9999px;
-            text-decoration: none;
-        }
+{% extends 'layout.html' %}
 
-        .totop a:hover {
-            background-position: 0 -35px;
-        }
-    </style>
-    <title>EC-Lab</title>
-</head>
-
-<body>
-
-<div class="navbar navbar-inverse navbar-fixed-top top-navbar">
-    <div class="navbar-inner">
+{% block spotlight %}
+<div class="container-fluid container mt15">
+    <div id="spotlight">
         <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            <a class="brand" href="/">EC-Lab</a>
-            <div class="divider-vertical"></div>
-                        <div class="nav-collapse collapse">
-            
-                <ul class="nav">
-                        <li class="active">
-                            <a href="/" class="item-topic">首页</a>
-                        </li>
-                        <li>
-                            <a href="/develop" class="item-members">实验室简介</a>
-                        </li>
-                        <li>
-                            <a href="/develop" class="item-book">新闻</a>
-                        </li>
-                        <li>
-                            <a href="/develop" class="item-timeline">数据挖掘平台</a>
-                        </li>
-                        <li>
-                            <a href="/develop" class="item-nav">BBS</a>
-                        </li>
-                </ul>
-            </div>
-            <!--/.nav-collapse -->
-            <form class="navbar-search pull-left J_search">
-                <input type="text" class="search-query" placeholder="" x-webkit-speech="">
-            </form>
-            <div class="nav-collapse collapse pull-right">
-                <ul class="nav account-menu">
-                                           <!--  <li><a href="/">首页</a></li> -->
-                    <li><a href="/develop"><span class="">登录</span></a></li>
-                    <li><a href="/develop" class="">注册</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+            <div class="slideshow" data-editable="type=list;name=slideshow"  data-type="fade" data-interval="10000" data-animation-time="1000">
+                <div class="slides-wrapper">
+                    <a class="slide active" >
+                        <!-- 940px400px -->
+                        <img src="{{ url_for('static', filename='html/images/homepage1.jpg') }}" alt="" />
+                            <!--                 <div class="carousel-caption">
+                            <h3>hahahahah</h3>
+                            <p>hhhh</p>
+                            </div> -->
+                    </a>
+                    <a class="slide " >
+                        <img src="{{ url_for('static', filename='html/images/homepage2.jpg') }}" alt="" />
+                    </a>
+                    <a class="slide " >
+                        <img src="{{ url_for('static', filename='html/images/homepage3.jpg') }}" alt="" />
+                    </a>
 
-<div id="spotlight">
-    <div class="container">
-        <div class="slideshow" data-editable="type=list;name=slideshow"  data-type="fade" data-interval="10000" data-animation-time="1000">
-        <div class="slides-wrapper">
-                <a class="slide active" >
-                <!-- 940px400px -->
-                <img src="{{ url_for('static', filename='html/image/homepage1.jpg') }}" alt="" />
-<!--                 <div class="carousel-caption">
-                <h3>hahahahah</h3>
-                <p>hhhh</p>
-                </div> -->
-                </a>
-                <a class="slide " >
-                <img src="{{ url_for('static', filename='html/image/homepage2.jpg') }}" alt="" />
-                </a>
-                <a class="slide " >
-                <img src="{{ url_for('static', filename='html/image/homepage3.jpg') }}" alt="" />
-                </a>
-
-        </div>
-        <div class="indicators">
+                </div>
+                <div class="indicators">
                     <a class="indicator active" href="#" data-slide="1"></a>
                     <a class="indicator " href="#" data-slide="2"></a>
                     <a class="indicator " href="#" data-slide="3"></a>
-        </div>
-        </div>
-    </div>    
+                </div>
+            </div>
+        </div>    
+    </div>
 </div>
+{% endblock %}
 
-<div class="container-fluid container mt15">
+{% block main %}
+<!-- 主题 -->
     <div class="row-fluid">
     <!-- 左边栏 -->
         <div class="span9 left">
@@ -405,8 +323,8 @@
         </div>
         <div class="ui-content">
         <!-- 300px70px -->
-            <p><a href="http://www.uestc.edu.cn/"><img src="{{ url_for('static', filename='html/image/friend1.jpg') }}" alt="" /></a></p>
-            <p><a href="http://www.mgmt.uestc.edu.cn/"><img src="{{ url_for('static', filename='html/image/friend2.jpg') }}" alt="" /></a></p>
+            <p><a href="http://www.uestc.edu.cn/"><img src="{{ url_for('static', filename='html/images/friend1.jpg') }}" alt="" /></a></p>
+            <p><a href="http://www.mgmt.uestc.edu.cn/"><img src="{{ url_for('static', filename='html/images/friend2.jpg') }}" alt="" /></a></p>
             <!-- <p><a href="/"><img src="/static/images/coding_logo.png" alt="" style="width:80%;" /></a></p>
             <p><a href="/"><img src="/static/images/angularjs_cn_logo.png" alt="" style="width:90%;" /></a></p>
             <p><a href="/"><img src="/static/images/teambition_logo.png" alt="" style="width:80%; margin:5px 0 15px 10px;" /></a></p>
@@ -415,24 +333,4 @@
         </div>
         <!-- 右边栏项目2 -->
     </div>
-</div>
-
-<div class="footer mt15">
-    <div class="container">
-        <div class="footer-bg">
-            <p class="links">
-                <span>©2016</span>
-                <span>Powered by Flask</span>
-                <span>, All rights reserved.</span>
-            </p>
-            <p class="fade-color">
-                <span>Ruyi Yin</span>
-            </p>
-        </div>
-    </div>
-</div>
-<div style="display: none;"></div>
-
-</body>
-
-</html>    
+{% endblock %}

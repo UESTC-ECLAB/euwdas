@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>{% block title %}ECLab - 电子商务实验室{% endblock %}</title>
+    <script type="text/javascript" src="{{ url_for('static', filename='html/js/jquery-1.8.3.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='html/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='html/js/in-min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='html/js/spotlight.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='html/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='html/css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='html/css/new.css') }}">
+    {% block stylesheet %}{% endblock %}
+    {% block javascript %}{% endblock %}
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            $('.J_search').submit(function(e) {
+                var _node = $(this);
+                var query = _node.find('input').val();
+                e.preventDefault();
+                window.open('http://www.google.com/search?q=site:ec-lab.com/t%20' + query, "_blank");
+            });
+        });
+    </script>
+    {#
+    <script type="text/javascript" src="{{ url_for('static', filename='html/js/jquery.scrolltotop-min.js') }}"></script>
+    #}
+    <style type="text/css">
+        .totop a {
+            display: block;
+            width: 40px;
+            height: 35px;
+            background: url('http://f2e.im/static/images/totop.gif') no-repeat;
+            text-indent: -9999px;
+            text-decoration: none;
+        }
+
+        .totop a:hover {
+            background-position: 0 -35px;
+        }
+    </style>
+    {#
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            $.scrolltotop({
+                className: 'totop',
+                controlHTML: '<a href="javascript:;">回到顶部↑</a>',
+                offsety: 10
+            });
+        });
+    </script>
+    #}
+</head>
+<body>
+<!-- 导航栏 -->
+<div class="navbar navbar-inverse navbar-fixed-top top-navbar">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="/">EC-Lab</a>
+            <div class="divider-vertical"></div>
+                        <div class="nav-collapse collapse">
+            
+                <ul class="nav">
+                                            <li class="active">
+                            <a href="/" class="item-topic">首页</a>
+                        </li>
+                                            <li>
+                            <a href="/develop" class="item-members">实验室简介</a>
+                        </li>
+                                            <li>
+                            <a href="/develop" class="item-book">新闻</a>
+                        </li>
+                                            <li>
+                            <a href="/develop" class="item-timeline">数据挖掘平台</a>
+                        </li>
+                                            <li>
+                            <a href="/develop" class="item-nav">BBS</a>
+                        </li>
+                                    </ul>
+            </div>
+            <!--/.nav-collapse -->
+            <form class="navbar-search pull-left J_search">
+                <input type="text" class="search-query" placeholder="" x-webkit-speech="">
+            </form>
+            <div class="nav-collapse collapse pull-right">
+                <ul class="nav account-menu">
+                                           <!--  <li><a href="/">首页</a></li> -->
+                    <!-- <li><a href="/login"><span class="">登录</span></a></li>
+                    <li><a href="/register" class="">注册</a></li> -->
+                    {% if current_user %}
+                        <li>
+                            <a href="/u/{{ current_user.username or current_user.uid }}" class="avatar">
+                                <img src="/static/avatar/s_{{ current_user.avatar or 'default.png' }}?t={{ gen_random() }}" width="20" height="20">
+                            </a>
+                        </li>
+                        <li><a href="/u/{{ current_user.username or current_user.uid }}">{{ current_user.username }}</a></li>
+                        <li>
+                            <a href="/setting">
+                                <span class="octicon octicon-tools"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/logout">
+                                <span class="octicon octicon-log-out"></span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="/login">
+                                <span class="octicon octicon-log-in"></span>
+                            </a>
+                        </li>
+                        <li><a href="/register" class="btn btn-small">注册</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 主体 -->
+{% block spotlight %}{% endblock %}
+<div class="container-fluid container mt15">
+    {% block main %}{% endblock %}
+</div>
+
+<!-- 底部 -->
+<div class="footer mt15">
+    <div class="container">
+        <div class="footer-bg">
+            <p class="links">
+                <span>©2016</span>
+                <span>Powered by Flask</span>
+                <span>, All rights reserved.</span>
+            </p>
+            <p class="fade-color">
+                <span>Ruyi Yin</span>
+            </p>
+        </div>
+    </div>
+</div>
+<div style="display: none;">{% block display %}{% endblock %}</div>
+
+</body>
+</html>
