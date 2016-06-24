@@ -41,13 +41,14 @@ def create_app():
         form = RegisterForm(request.form)
         if request.method == 'POST':
             print form.username.data, form.email.data,form.password.data
+            print form.validate(),form.errors,type(form.errors)
             if not form.validate():
                 return render_template('register.html', form=form, error=form.errors)
             # user = User(form.username.data, form.email.data,
             #             form.password.data)
             # db_session.add(user)
             
-            flash('Thanks for registering')
+            # flash('Thanks for registering')
             return redirect(url_for('login'))
         print 'jjjjjjjjjjjjjjjjj',form
         return render_template('register.html', form=form)
