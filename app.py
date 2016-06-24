@@ -9,6 +9,9 @@ import datetime
 import pymongo
 from pymongo import MongoClient
 import time
+
+from form.user import *
+
 from core.preprocess import preprocess
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -25,21 +28,30 @@ def create_app():
 
 
 
-    @_app.route('/')
+    @_app.route('/', methods=['GET'])
     def homepage():
         return render_template('index.html')
 
-    @_app.route('/test')
-    def testpage():
-        return 'test'
-
-    @_app.route('/login')
+    @_app.route('/login', methods=['GET'])
     def login():
         return render_template('login.html')
 
-    @_app.route('/register')
+    @_app.route('/register', methods=['GET','POST'])
     def register():
-        return render_template('register.html')
+        form = RegisterForm(request.form)
+        if request.method == 'POST':
+            print form.username.data, form.email.data,form.password.data
+            if not form.validate():
+                return render_template('register.html', form=form, error=form.errors)
+            # user = User(form.username.data, form.email.data,
+            #             form.password.data)
+            # db_session.add(user)
+            
+            flash('Thanks for registering')
+            return redirect(url_for('login'))
+        print 'jjjjjjjjjjjjjjjjj',form
+        return render_template('register.html', form=form)
+
 
     @_app.route('/develop')
     def develppage():
