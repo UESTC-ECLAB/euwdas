@@ -100,7 +100,7 @@
                     {% if current_user %}
                         <li>
                             <a href="/u/{{ current_user.username or current_user.uid }}" class="avatar">
-                                <img src="/static/avatar/s_{{ current_user.avatar or 'default.png' }}?t={{ gen_random() }}" width="20" height="20">
+                                <img src="/static/avatar/s_{{ current_user.avatar or 'default.png' }}" width="20" height="20">
                             </a>
                         </li>
                         <li><a href="/u/{{ current_user.username or current_user.uid }}">{{ current_user.username }}</a></li>

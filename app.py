@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, g, request
 import random
-from flask import Flask, send_from_directory, session, url_for, jsonify, abort, render_template,flash
+from flask import Flask, send_from_directory, session, url_for, jsonify, abort, render_template, flash
+from flask.ext.login import LoginManager
 import os
 import sys
 import random
@@ -13,10 +14,12 @@ import time
 from form.user import *
 
 from core.preprocess import preprocess
+from module.auth import auth
 reload(sys)
 sys.setdefaultencoding('utf-8')
 client = MongoClient()
 client = MongoClient('localhost', 27017)
+login_manager = LoginManager()
 
 def create_app():
     _app = Flask(__name__)
@@ -24,35 +27,13 @@ def create_app():
     # mongo.init_app(_app)
     # configure_logging(_app)
     configure_jinja2(_app)
+    login_manager.setup_app(_app)
     _app.register_blueprint(preprocess)
-
-
+    _app.register_blueprint(auth)
 
     @_app.route('/', methods=['GET'])
     def homepage():
         return render_template('index.html')
-
-    @_app.route('/login', methods=['GET'])
-    def login():
-        return render_template('login.html')
-
-    @_app.route('/register', methods=['GET','POST'])
-    def register():
-        form = RegisterForm(request.form)
-        if request.method == 'POST':
-            print form.username.data, form.email.data,form.password.data
-            print form.validate(),form.errors,type(form.errors)
-            if not form.validate():
-                return render_template('register.html', form=form, error=form.errors)
-            # user = User(form.username.data, form.email.data,
-            #             form.password.data)
-            # db_session.add(user)
-            
-            # flash('Thanks for registering')
-            return redirect(url_for('login'))
-        print 'jjjjjjjjjjjjjjjjj',form
-        return render_template('register.html', form=form)
-
 
     @_app.route('/develop')
     def develppage():
@@ -78,3 +59,18 @@ def configure_logging(app):
     app.logger.addHandler(file_handler)
 
     app.logger.setLevel(logging.INFO)
+
+@login_manager.unauthorized_handler
+def unauthorized_callback():
+    return redirect('/login')
+
+@login_manager.user_loader
+def load_user(id):
+    if id is None:
+        redirect('/login')
+    user = User()
+    user.get_by_id(id)
+    if user.is_active():
+        return user
+    else:
+        return None
