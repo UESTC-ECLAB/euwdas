@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, g, request
 import random
-from flask import Flask, send_from_directory, session, url_for, jsonify, abort, render_template
+from flask import Flask, send_from_directory, session, url_for, jsonify, abort, render_template,flash
 import os
 import sys
 import random
