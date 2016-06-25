@@ -28,15 +28,17 @@ def register():
         print form.username.data, form.email.data, form.password.data
         print form.validate(),form.errors,type(form.errors)
         if not form.validate():
-            return render_template('register.html', form=form, error=form.errors)
-        new_user = User()
-        # user = User(form.username.data, form.email.data,
-        #             form.password.data)
-        # db_session.add(user)
-        
-        # flash('Thanks for registering')
-
-        return redirect(url_for('login'))
+            return render_template('register.html', form = form, error = form.errors)
+        if User().get_by_w_email(form.email.data):
+            error = u'邮箱已被注册'
+            return render_template('register.html', form = form, error = error)
+        if User().get_by_w_username(form.username.data):
+            error = u'用户名已被注册'
+            return render_template('register.html', form = form, error = error)
+        new_user = User(form.email.data, form.password.data, form.username.data)
+        userid = new_user.save()
+        flash('success')
+        return redirect('/login')
     print 'jjjjjjjjjjjjjjjjj',form
     return render_template('register.html', form=form)
 
@@ -45,7 +47,7 @@ def register():
 
 
 @auth.route("/logout")
-@login_required
+# @login_required
 def logout():
     logout_user()
     flash("Logged out.")

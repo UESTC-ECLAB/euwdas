@@ -72,6 +72,19 @@ class User(UserMixin):
             self.userid = one_user['userid']
             return self
 
+    def get_by_w_email(self, email):
+        one_user = db.user.find_one({"email":email})
+        if str(one_user) == 'None':
+            return False
+        else:
+            return True
+
+    def get_by_w_username(self, username):
+        one_user = db.user.find_one({"username":username})
+        if str(one_user) == 'None':
+            return False
+        else:
+            return True
 
 class Anonymous(AnonymousUserMixin):
     name = u"Anonymous"
