@@ -17,10 +17,6 @@ sys.setdefaultencoding('utf-8')
 
 auth = Blueprint('auth', __name__, template_folder='templates')
 
-@auth.route("/login", methods=["GET", "POST"])
-def login():
-    return render_template('login.html')
-
 @auth.route('/register', methods=['GET','POST'])
 def register():
     form = RegisterForm(request.form)
@@ -42,7 +38,9 @@ def register():
     print 'jjjjjjjjjjjjjjjjj',form
     return render_template('register.html', form=form)
 
-
+@auth.route("/login", methods=["GET", "POST"])
+def login():
+    return render_template('login.html')
 
 
 

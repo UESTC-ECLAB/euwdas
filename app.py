@@ -65,11 +65,11 @@ def unauthorized_callback():
     return redirect('/login')
 
 @login_manager.user_loader
-def load_user(id):
-    if id is None:
+def load_user(userid):
+    if userid is None:
         redirect('/login')
     user = User()
-    user.get_by_id(id)
+    user.get_by_id(userid)
     if user.is_active():
         return user
     else:

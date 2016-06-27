@@ -72,6 +72,16 @@ class User(UserMixin):
             self.userid = one_user['userid']
             return self
 
+    def get_by_id(self, userid):
+        one_user = db.user.find_one({"userid":userid})
+        if str(one_user) == 'None':
+            return False
+        else:
+            self.email = one_user['email']
+            self.username = one_user['username']
+            self.userid = one_user['userid']
+            return self
+
     def get_by_w_email(self, email):
         one_user = db.user.find_one({"email":email})
         if str(one_user) == 'None':
