@@ -38,13 +38,38 @@ def register():
             return render_template('register.html', form = form, template_variables = template_variables)
         new_user = User(form.email.data, form.password.data, form.username.data)
         userid = new_user.save()
-        flash(u'恭喜您,注册成功！我们已经往您邮箱发送了验证邮件！现在您可以登录体验了！')
+        # flash(u'恭喜您,注册成功！我们已经往您邮箱发送了验证邮件！现在您可以登录体验了！')
+        flash(u'恭喜您,注册成功！现在您可以登录体验了！')
         return redirect('/login')
     return render_template('register.html', form=form, template_variables = template_variables)
 
 @auth.route("/login", methods=["GET", "POST"])
 def login():
-    return render_template('login.html')
+    form = LoginForm(request.form)
+    template_variables = {}
+    if request.method == 'POST':
+        # print form.email.data, form.password.data
+        if not form.validate():
+            form_error = []
+            for k,v in form.errors.items():
+                form_error.append(v[0])
+            template_variables['form_error'] = form_error
+            return render_template('login.html', template_variables = template_variables)
+
+        if not User().get_by_w_email(form.email.data):
+            template_variables['form_error'] = [u'您的邮箱还未注册！']
+            return render_template('login.html', template_variables = template_variables)
+
+        one_user = User().get_by_email_password(form.email.data, form.password.data)
+
+        if not one_user:
+        	template_variables['form_error'] = [u'对不起，您的邮箱和密码不匹配！']
+        	return render_template('login.html', template_variables = template_variables)
+        print 'hh'
+        
+        login_user(one_user)
+        return redirect('/login')
+    return render_template('login.html', template_variables = template_variables)
 
 
 

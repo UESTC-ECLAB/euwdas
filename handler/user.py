@@ -16,12 +16,15 @@ client = MongoClient('localhost', 27017)
 db = client.eclab
 
 class User(UserMixin):
-    def __init__(self, email=None, password=None, username=None, userid=None, avatar=None):
+    def __init__(self, email=None, password=None, username=None, \
+                        userid=None, avatar=None, active=True, \
+                        is_admin=False):
         self.email = email
         self.password = password
         self.username = username
-        self.isAdmin = False
-        self.user_id = None
+        self.is_admin = False
+        self.is_active = active
+        self.userid = None
         self.avatar = None
 
     def save(self):
@@ -54,6 +57,8 @@ class User(UserMixin):
             self.email = one_user['email']
             self.username = one_user['username']
             self.userid = one_user['userid']
+            self.avatar = one_user['avatar']
+            self.is_active = True
             return self
 
     def get_by_username(self, username):
@@ -64,6 +69,8 @@ class User(UserMixin):
             self.email = one_user['email']
             self.username = one_user['username']
             self.userid = one_user['userid']
+            self.avatar = one_user['avatar']
+            self.is_active = True
             return self
 
     def get_by_userid(self, userid):
@@ -74,6 +81,8 @@ class User(UserMixin):
             self.email = one_user['email']
             self.username = one_user['username']
             self.userid = one_user['userid']
+            self.avatar = one_user['avatar']
+            self.is_active = True
             return self
 
     def get_by_id(self, userid):
@@ -84,6 +93,8 @@ class User(UserMixin):
             self.email = one_user['email']
             self.username = one_user['username']
             self.userid = one_user['userid']
+            self.avatar = one_user['avatar']
+            self.is_active = True
             return self
 
     def get_by_w_email(self, email):
@@ -99,6 +110,22 @@ class User(UserMixin):
             return False
         else:
             return True
+
+    def get_by_email_password(self, email, password):
+        one_user = db.user.find_one({"email":email})
+        secure_password = hashlib.sha1(password).hexdigest()
+        if one_user['password'] != secure_password:
+            return False
+        else:
+            self.email = one_user['email']
+            self.username = one_user['username']
+            self.userid = one_user['userid']
+            self.avatar = one_user['avatar']
+            self.is_active = True
+            return self
+
+    def get_id(self):
+        return self.userid
 
 class Anonymous(AnonymousUserMixin):
     name = u"Anonymous"

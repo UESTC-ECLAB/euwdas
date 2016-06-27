@@ -12,6 +12,7 @@ from pymongo import MongoClient
 import time
 
 from form.user import *
+from handler.user import User
 
 from core.preprocess import preprocess
 from module.auth import auth
