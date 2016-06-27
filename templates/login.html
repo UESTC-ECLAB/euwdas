@@ -10,6 +10,15 @@
                         <div id="legend" class="mb50">
                             <legend class="">登录</legend>
                         </div>
+                        {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                            <ul class="errors alert alert-error">
+                            {% for message in messages %}
+                            <li>{{ message }}</li>
+                            {% endfor %}
+                            </ul>
+                            {% endif %}
+                        {% endwith %}
                         <div class="control-group">
                             <!-- E-mail -->
                             <label class="control-label" for="email">E-mail</label>

@@ -16,12 +16,13 @@ client = MongoClient('localhost', 27017)
 db = client.eclab
 
 class User(UserMixin):
-    def __init__(self, email=None, password=None, username=None, userid=None):
+    def __init__(self, email=None, password=None, username=None, userid=None, avatar=None):
         self.email = email
         self.password = password
         self.username = username
         self.isAdmin = False
         self.user_id = None
+        self.avatar = None
 
     def save(self):
         email = self.email
@@ -29,14 +30,17 @@ class User(UserMixin):
         username = self.username
 
         secure_password = hashlib.sha1(password).hexdigest()
-        userid = str(int(db.user.find().count())-1)
+        userid = int(db.user.find().count())
+        avatar = '/static/images/avatar/default/default_1.png'
 
         user_info = {
             "email": email,
             "password": secure_password,
             "username": username,
             "createdAt": time.strftime('%Y-%m-%d %H:%M:%S'),
-            "userid": userid
+            "userid": userid,
+            "avatar": avatar,
+            "verified":0
         }
         print "new user id = %s " % userid
         db.user.insert_one(user_info)

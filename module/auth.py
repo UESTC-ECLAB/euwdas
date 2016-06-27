@@ -20,23 +20,27 @@ auth = Blueprint('auth', __name__, template_folder='templates')
 @auth.route('/register', methods=['GET','POST'])
 def register():
     form = RegisterForm(request.form)
+    template_variables = {}
     if request.method == 'POST':
-        print form.username.data, form.email.data, form.password.data
-        print form.validate(),form.errors,type(form.errors)
+        # print form.username.data, form.email.data, form.password.data
+        # print form.validate(),form.errors,type(form.errors)
         if not form.validate():
-            return render_template('register.html', form = form, error = form.errors)
+            form_error = []
+            for k,v in form.errors.items():
+                form_error.append(v[0])
+            template_variables['form_error'] = form_error
+            return render_template('register.html', form = form, template_variables = template_variables)
         if User().get_by_w_email(form.email.data):
-            error = u'邮箱已被注册'
-            return render_template('register.html', form = form, error = error)
+            template_variables['form_error'] = [u'邮箱已被注册']
+            return render_template('register.html', form = form, template_variables = template_variables)
         if User().get_by_w_username(form.username.data):
-            error = u'用户名已被注册'
-            return render_template('register.html', form = form, error = error)
+            template_variables['form_error'] = [u'用户名已被注册']
+            return render_template('register.html', form = form, template_variables = template_variables)
         new_user = User(form.email.data, form.password.data, form.username.data)
         userid = new_user.save()
-        flash('success')
+        flash(u'恭喜您,注册成功！我们已经往您邮箱发送了验证邮件！现在您可以登录体验了！')
         return redirect('/login')
-    print 'jjjjjjjjjjjjjjjjj',form
-    return render_template('register.html', form=form)
+    return render_template('register.html', form=form, template_variables = template_variables)
 
 @auth.route("/login", methods=["GET", "POST"])
 def login():

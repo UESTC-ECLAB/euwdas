@@ -10,10 +10,13 @@
                         <div id="legend" class="mb50">
                             <legend class="">注册</legend>
                         </div>
-                        {{ errors }}
+                        {% if template_variables.form_error %}
                         <ul class="errors alert alert-error">
-                            <li>试试报个错</li>
+                        {% for error in template_variables.form_error %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
                         </ul>
+                        {% endif %}
                         <div class="control-group">
                             <!-- Username -->
                             <label class="control-label" for="username">用户名</label>
