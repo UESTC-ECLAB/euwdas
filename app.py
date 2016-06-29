@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, g, request
 import random
-from flask import Flask, send_from_directory, session, url_for, jsonify, abort, render_template, flash
+from flask import Flask, send_from_directory, session, url_for, jsonify, abort, render_template, flash, redirect
 from flask.ext.login import LoginManager
+from flask.ext.login import (current_user, login_required, login_user, logout_user, confirm_login, fresh_login_required)
 import os
 import sys
 import random
@@ -29,6 +30,7 @@ def create_app():
     # configure_logging(_app)
     configure_jinja2(_app)
     login_manager.setup_app(_app)
+    login_manager.login_view = 'login'
     _app.register_blueprint(preprocess)
     _app.register_blueprint(auth)
 
@@ -37,8 +39,19 @@ def create_app():
         return render_template('index.html')
 
     @_app.route('/develop')
+    @login_required    
     def develppage():
+        user = g.user
+        print session
+        print user.userid
+        print user.username
+        print user.avatar
+        print user.email
         return render_template('develop.html') 
+
+    @_app.before_request
+    def before_request():
+        g.user = current_user
 
     return _app
 
@@ -71,7 +84,7 @@ def load_user(userid):
         redirect('/login')
     user = User()
     user.get_by_id(userid)
-    if user.is_active():
+    if user.is_active:
         return user
     else:
         return None

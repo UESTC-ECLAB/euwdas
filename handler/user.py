@@ -22,8 +22,8 @@ class User(UserMixin):
         self.email = email
         self.password = password
         self.username = username
-        self.is_admin = False
-        self.is_active = active
+        self.admin = False
+        self.active = active
         self.userid = None
         self.avatar = None
 
@@ -94,7 +94,6 @@ class User(UserMixin):
             self.username = one_user['username']
             self.userid = one_user['userid']
             self.avatar = one_user['avatar']
-            self.is_active = True
             return self
 
     def get_by_w_email(self, email):
@@ -121,7 +120,6 @@ class User(UserMixin):
             self.username = one_user['username']
             self.userid = one_user['userid']
             self.avatar = one_user['avatar']
-            self.is_active = True
             return self
 
     def get_id(self):
