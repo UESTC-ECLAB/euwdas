@@ -94,16 +94,13 @@
             </form>
             <div class="nav-collapse collapse pull-right">
                 <ul class="nav account-menu">
-                                           <!--  <li><a href="/">首页</a></li> -->
-                    <!-- <li><a href="/login"><span class="">登录</span></a></li>
-                    <li><a href="/register" class="">注册</a></li> -->
-                    {% if current_user %}
+                    {% if current_user.username %}
                         <li>
-                            <a href="/u/{{ current_user.username or current_user.uid }}" class="avatar">
-                                <img src="/static/avatar/s_{{ current_user.avatar or 'default.png' }}" width="20" height="20">
+                            <a href="/develop" class="avatar">
+                                <img src="{{ current_user.avatar }}" width="20" height="20">
                             </a>
                         </li>
-                        <li><a href="/u/{{ current_user.username or current_user.uid }}">{{ current_user.username }}</a></li>
+                        <li><a href="/develop">{{ current_user.username }}</a></li>
                         <li>
                             <a href="/setting">
                                 <span class="octicon octicon-tools"></span>
@@ -115,11 +112,7 @@
                             </a>
                         </li>
                     {% else %}
-                        <li>
-                            <a href="/login">
-                                <span class="octicon octicon-log-in"></span>
-                            </a>
-                        </li>
+                        <li><a href="/login"><span class="">登录</span></a></li>
                         <li><a href="/register" class="btn btn-small">注册</a></li>
                     {% endif %}
                 </ul>

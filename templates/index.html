@@ -41,7 +41,7 @@
         <div class="topics container-box deprecated-mt10">
         <div class="ui-header">
             <span class="bread-nav">
-                <a class="node-link" href="http://f2e.im/node/share">新闻推荐</a>
+                <a class="node-link" href="http://f2e.im/node/share">推荐阅读</a>
             </span>
             </div>
 
@@ -276,6 +276,21 @@
     <!-- 右边栏 -->
     <div class="span3 right">
         <!-- 右边栏项目1 -->
+        {% if current_user.username %}
+        <div class="usercard container-box">
+            <div class="ui-header">
+                <a href="/develop">
+                    <img src="{{ current_user.avatar }}" alt="" class="avatar" />
+                </a>
+                <div class="username">{{ current_user.username }}</div>
+                <div class="username">UID:{{ current_user.userid }}</div>
+                <div class="website"><a href=""></a></div>
+            </div>
+<!--             <div class="ui-content">
+
+            </div> -->
+        </div>
+        {% else %}
         <div class="login-box container-box">
             <div class="ui-header">
                 <span class="title">
@@ -287,8 +302,9 @@
                 <a class="btn btn-small mr10" type="button" href="/login">登录</a>
                 <a class="btn btn-small mr10" type="button" href="/register">注册</a>
                 <div>已注册用户也可以 <a class="" type="button" href="/forgot">找回密码</a></div>
+            </div>
         </div>
-        </div>
+        {% endif %}
         <!--  -->
         <div class="sidebox container-box mt10 community-status">
             <div class="ui-header">

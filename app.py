@@ -2,8 +2,7 @@
 from flask import Flask, g, request
 import random
 from flask import Flask, send_from_directory, session, url_for, jsonify, abort, render_template, flash, redirect
-from flask.ext.login import LoginManager
-from flask.ext.login import (current_user, login_required, login_user, logout_user, confirm_login, fresh_login_required)
+from flask.ext.login import LoginManager, current_user
 import os
 import sys
 import random
@@ -38,15 +37,8 @@ def create_app():
     def homepage():
         return render_template('index.html')
 
-    @_app.route('/develop')
-    @login_required    
+    @_app.route('/develop')   
     def develppage():
-        user = g.user
-        print session
-        print user.userid
-        print user.username
-        print user.avatar
-        print user.email
         return render_template('develop.html') 
 
     @_app.before_request

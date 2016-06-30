@@ -65,10 +65,9 @@ def login():
         if not one_user:
         	template_variables['form_error'] = [u'对不起，您的邮箱和密码不匹配！']
         	return render_template('login.html', template_variables = template_variables)
-        print 'hh'
         
         login_user(one_user)
-        return redirect('/login')
+        return redirect('/')
     return render_template('login.html', template_variables = template_variables)
 
 
