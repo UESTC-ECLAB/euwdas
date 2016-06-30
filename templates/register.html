@@ -5,20 +5,11 @@
     <!-- 左边栏 -->
         <div class="span9 left">
             <div class="container-box">
-                <form class="form-horizontal" action='/login' method="POST">
+                <form class="form-horizontal" action='register' method="POST">
                     <fieldset>
                         <div id="legend" class="mb50">
-                            <legend class="">登录</legend>
+                            <legend class="">注册</legend>
                         </div>
-                        {% with messages = get_flashed_messages() %}
-                            {% if messages %}
-                            <ul class="errors alert alert-error">
-                            {% for message in messages %}
-                            <li>{{ message }}</li>
-                            {% endfor %}
-                            </ul>
-                            {% endif %}
-                        {% endwith %}
                         {% if template_variables.form_error %}
                         <ul class="errors alert alert-error">
                         {% for error in template_variables.form_error %}
@@ -27,11 +18,20 @@
                         </ul>
                         {% endif %}
                         <div class="control-group">
+                            <!-- Username -->
+                            <label class="control-label" for="username">用户名</label>
+                            <div class="controls">
+                                <input type="text" id="username" name="username" placeholder="" class="input-xlarge">
+                                <p class="help-block">用户名由字母开头，只能含有字母、数字或者下划线</p>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
                             <!-- E-mail -->
                             <label class="control-label" for="email">E-mail</label>
                             <div class="controls">
                                 <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
-                                <p class="help-block">请输入您注册时所填邮箱</p>
+                                <p class="help-block">请输入你的E-mail，便于登录和找回密码</p>
                             </div>
                         </div>
 
@@ -40,16 +40,23 @@
                             <label class="control-label" for="password">密码</label>
                             <div class="controls">
                                 <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
-                                <p class="help-block">请输入您的密码（不少于4个字符）</p>
+                                <p class="help-block">密码不少于4个字符</p>
                             </div>
+                        </div>
+
+                        <div class="control-group">
+                            <!-- Password -->
+                            <label class="control-label" for="password_confirm">密码（确认）</label>
+                            <div class="controls">
+                                <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge">
+                                <p class="help-block">请再次输入密码</p>
+                                </div>
                         </div>
 
                         <div class="control-group">
                             <!-- Button -->
                             <div class="controls">
-                                <button class="btn btn-success">登录</button>
-                                <a href="/register" class="ml10 mr10 btn">注册账号</a>
-                                <a href="/forgot" class="btn">忘记密码了</a>
+                                <button class="btn btn-success">注册</button>
                             </div>
                         </div>
                     </fieldset>
@@ -58,13 +65,15 @@
         </div>
 <!-- 右边栏 -->
         <div class="span3 right">
-            <div class="sidenav container-box">
-                <ul>
-                    <li class="current"><a href="/setting">用户中心</a></li>
-                    <li><a href="/setting/avatar">设置头像</a></li>
-                    <li><a href="/setting/password">设置密码</a></li>
-                    <li><a href="/">返回首页</a></li>
-                </ul>
+            <div class="intro container-box sidebox">
+                <div class="ui-header">
+                    <span class="title">关于</span>
+                </div>
+                <div class="ui-content">
+                    <p>
+                        电子商务实验室...
+                    </p>
+                </div>
             </div>
         </div>
     </div>

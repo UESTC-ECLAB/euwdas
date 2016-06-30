@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, g, request
 import random
-from flask import Flask, send_from_directory, session, url_for, jsonify, abort, render_template
+from flask import Flask, send_from_directory, session, url_for, jsonify, abort, render_template, flash, redirect
+from flask.ext.login import LoginManager, current_user
 import os
 import sys
 import random
@@ -9,11 +10,17 @@ import datetime
 import pymongo
 from pymongo import MongoClient
 import time
+
+from form.user import *
+from handler.user import User
+
 from core.preprocess import preprocess
+from module.auth import auth
 reload(sys)
 sys.setdefaultencoding('utf-8')
 client = MongoClient()
 client = MongoClient('localhost', 27017)
+login_manager = LoginManager()
 
 def create_app():
     _app = Flask(__name__)
@@ -21,25 +28,22 @@ def create_app():
     # mongo.init_app(_app)
     # configure_logging(_app)
     configure_jinja2(_app)
+    login_manager.setup_app(_app)
+    login_manager.login_view = 'login'
     _app.register_blueprint(preprocess)
+    _app.register_blueprint(auth)
 
-
-
-    @_app.route('/')
+    @_app.route('/', methods=['GET'])
     def homepage():
         return render_template('index.html')
 
-    @_app.route('/test')
-    def testpage():
-        return 'test'
-
-    @_app.route('/login')
-    def login():
-        return render_template('login.html')
-
-    @_app.route('/develop')
+    @_app.route('/develop')   
     def develppage():
         return render_template('develop.html') 
+
+    @_app.before_request
+    def before_request():
+        g.user = current_user
 
     return _app
 
@@ -61,3 +65,18 @@ def configure_logging(app):
     app.logger.addHandler(file_handler)
 
     app.logger.setLevel(logging.INFO)
+
+@login_manager.unauthorized_handler
+def unauthorized_callback():
+    return redirect('/login')
+
+@login_manager.user_loader
+def load_user(userid):
+    if userid is None:
+        redirect('/login')
+    user = User()
+    user.get_by_id(userid)
+    if user.is_active:
+        return user
+    else:
+        return None
