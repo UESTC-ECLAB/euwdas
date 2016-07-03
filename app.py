@@ -14,7 +14,7 @@ import time
 from form.user import *
 from handler.user import User
 
-from core.preprocess import preprocess
+
 from module.auth import auth
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -30,7 +30,6 @@ def create_app():
     configure_jinja2(_app)
     login_manager.setup_app(_app)
     login_manager.login_view = 'login'
-    _app.register_blueprint(preprocess)
     _app.register_blueprint(auth)
 
     @_app.route('/', methods=['GET'])

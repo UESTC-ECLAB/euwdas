@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-DEBUG = True
+DEBUG = False
 SECRET_KEY = '0dc2a52516784b9f8dff6sad6kghasff5'
 
 PROPAGATE_EXCEPTIONS = True
