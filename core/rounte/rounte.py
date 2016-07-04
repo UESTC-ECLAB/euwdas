@@ -20,16 +20,26 @@ class Rounte(object):
     def route(self, travelList):
         class_travel_set = self.class_travel_list(travelList)
 
-        print class_travel_set
+        # print class_travel_set
         travel_section = [k for k,v in class_travel_set.items()]
         # print travel_section
         travel_section_rank = self.tsp_path(travel_section, self.section_scores)
-        print travel_section_rank
+        # print travel_section_rank
         class_travel_rank = {}
         for k,v in class_travel_set.items():
-            every_section_socres = self.every_section_socres[self.every_section_socres_range[k]]
-            class_travel_rank[k] = self.tsp_path(v, every_section_socres)
-        print class_travel_rank
+            if len(v) == 1:
+                class_travel_rank[k] = v
+            elif len(v) == 0:
+                pass
+            else:                
+                every_section_socres = self.every_section_socres[self.every_section_socres_range[k]]
+                class_travel_rank[k] = self.tsp_path(v, every_section_socres)
+            # print k
+        travelList_result = []
+        for i in range(len(travel_section_rank)):
+            travelList_result.extend(class_travel_rank[travel_section_rank[i]])
+        return travelList_result
+        
 
 
     def tsp_path(self, travel_list, travel_list_scores):
@@ -91,12 +101,3 @@ class BeijingRounte(Rounte):
         self.section_scores = beijing_data["scores"]["section_scores"]
         self.every_section_socres = beijing_data["scores"]["every_section_socres"]
         self.every_section_socres_range = beijing_data["scores"]["every_section_socres_range"]
-
-
-if __name__ == '__main__':
-    travelList = [u"鸟巢",u"奥林匹克公园",u"北海公园",u"长安街",u"王府井大街",
-                    u"颐和园",u"清华大学",u"南锣鼓巷",u"国子监",u"八达岭"]
-    b = BeijingRounte()
-    b.route(travelList)
-    print b
-
