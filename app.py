@@ -16,6 +16,8 @@ from handler.user import User
 
 
 from module.auth import auth
+from module.travelrec import travelrec
+
 reload(sys)
 sys.setdefaultencoding('utf-8')
 client = MongoClient()
@@ -31,6 +33,7 @@ def create_app():
     login_manager.setup_app(_app)
     login_manager.login_view = 'login'
     _app.register_blueprint(auth)
+    _app.register_blueprint(travelrec)
 
     @_app.route('/', methods=['GET'])
     def homepage():
