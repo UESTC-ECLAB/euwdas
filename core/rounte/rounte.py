@@ -7,60 +7,63 @@ sys.setdefaultencoding('utf-8')
 abspath = os.getcwd()
 
 from dataset import beijing_data
-
-def hamilton(G):
-    F = [(G,[G.nodes()[0]])]
-    n = G.number_of_nodes()
-    while F:
-        graph,path = F.pop()
-        confs = []
-        for node in graph.neighbors(path[-1]):
-            conf_p = path[:]
-            conf_p.append(node)
-            conf_g = nx.Graph(graph)
-            conf_g.remove_node(path[-1])
-            confs.append((conf_g,conf_p))
-        for g,p in confs:
-            if len(p)==n:
-                return p
-            else:
-                F.append((g,p))
-    return None
+import tsp
 
 class Rounte(object):
     def __init__(self):
         self.attractions = None
         self.attractions_class = None
         self.section_scores = None
+        self.every_section_socres = None
+        self.every_section_socres_range = None
 
     def route(self, travelList):
         class_travel_set = self.class_travel_list(travelList)
 
         print class_travel_set
         travel_section = [k for k,v in class_travel_set.items()]
-        print travel_section
-        travel_section_rank = self.shortest_path(travel_section, self.section_scores)
+        # print travel_section
+        travel_section_rank = self.tsp_path(travel_section, self.section_scores)
+        print travel_section_rank
+        class_travel_rank = {}
+        for k,v in class_travel_set.items():
+            every_section_socres = self.every_section_socres[self.every_section_socres_range[k]]
+            class_travel_rank[k] = self.tsp_path(v, every_section_socres)
+        print class_travel_rank
 
 
-    def shortest_path(self, travel_list, travel_list_scores):
+    def tsp_path(self, travel_list, travel_list_scores):
         DG = nx.DiGraph()
         weighted_edges_from = []
         for i in range(len(travel_list)):
             for j in range(len(travel_list)):
                 if travel_list[i] != travel_list[j]:
-                    scores = travel_list_scores[travel_list[i]+"_"+travel_list[j]]
-                    temp_tuple = (travel_list[i],travel_list[j],scores)
-                    weighted_edges_from.append(temp_tuple)
-        print weighted_edges_from
+                    if travel_list_scores.has_key(travel_list[i]+"_"+travel_list[j]):
+                        scores = travel_list_scores[travel_list[i]+"_"+travel_list[j]]
+                        temp_tuple = (travel_list[i],travel_list[j],-scores)
+                        weighted_edges_from.append(temp_tuple)
+                    else:
+                        weighted_edges_from.append((travel_list[i],travel_list[j],100))
         DG.add_weighted_edges_from(weighted_edges_from)
-        print DG.nodes()
 
-        print hamilton(DG)
+        sol = 0.0
+        rounte = []
+        for i in range(len(travel_list)):
+            temp_sol = tsp.greedy_tsp(DG, travel_list[i])
+            if abs(temp_sol[1]) > sol:
+                sol = abs(temp_sol[1])
+                rounte = temp_sol[0]
 
-
-        # print DG
-
-
+        def fix(rounte):
+            fix_rounte = []
+            for i in range(len(rounte)):
+                if i == 0:
+                    fix_rounte.extend([rounte[i][0],rounte[i][1]])
+                else:
+                    fix_rounte.append(rounte[i][1])
+            return fix_rounte
+        # print fix(rounte)
+        return fix(rounte)
 
 
 
@@ -86,6 +89,8 @@ class BeijingRounte(Rounte):
         self.attractions = beijing_data["attractions"]
         self.attractions_class = beijing_data["attractions_class"]
         self.section_scores = beijing_data["scores"]["section_scores"]
+        self.every_section_socres = beijing_data["scores"]["every_section_socres"]
+        self.every_section_socres_range = beijing_data["scores"]["every_section_socres_range"]
 
 
 if __name__ == '__main__':
