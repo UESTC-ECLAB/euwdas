@@ -27,6 +27,8 @@ http://forum.memect.com/page/1/
 	"original_url" : "http://forum.memect.com/blog/thread/py-2016-06-29-3991742447606905/",
 	"image_url" : ["http://ww4.sinaimg.cn/large/cdda9064jw1f5c6ec7tzlj20hr0b6weq.jpg"],
 	"news_avatar" : "/static/images/avatar/default/news_1.png"
+	"news_time" : "XXX",
+	"spider_time" : "XXX"
 }
 
 3.newstag

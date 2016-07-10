@@ -6,11 +6,11 @@ sys.setdefaultencoding('utf-8')
 abspath = os.getcwd()
 from bs4 import BeautifulSoup
 import time
-from pymongo import MongoClient
-from multiprocessing.dummy import Pool as ThreadPool
-client = MongoClient()
-client = MongoClient('localhost', 27017)
-db = client.news
+# from pymongo import MongoClient
+# from multiprocessing.dummy import Pool as ThreadPool
+# client = MongoClient()
+# client = MongoClient('localhost', 27017)
+# db = client.news
 
 class baseSpider(object):
     def __init__(self):
