@@ -1,25 +1,5 @@
 {% extends 'layout.html' %}
 
-{% block javascript %}
-    <script src="{{ url_for('static', filename='html/js/slide.js') }}"></script>
-    <script>
-        $('.ck-slide').ckSlide({
-            autoPlay: true
-            });
-    </script>
-    <script src="http://www.html5tricks.com/gg_bd_ad_720x90.js" type="text/javascript"></script>
-    <script src="{{ url_for('static', filename='html/js/follow.js') }}" type="text/javascript"></script>
-    
-{% endblock %}
-
-{% block stylesheet %}
-<link rel="stylesheet" href="{{ url_for('static', filename='html/css/slide.css') }}">
-<style>
-    .ck-slide { width: 700px; height: 320px; margin: 0 auto;}
-    .ck-slide ul.ck-slide-wrapper { height: 320px;}
-</style>
-{% endblock %}
-
 {% block spotlight %}
 <div class="container-fluid container mt15">
     <div id="spotlight">
@@ -50,42 +30,6 @@
             </div>
         </div>    
     </div>
-</div>
-{% endblock %}
-
-{% block spotlight2 %}
-<div class="container-fluid container mt15">
-    <div class="ck-slide">
-        <ul class="ck-slide-wrapper">
-            <li style="opacity: 0;">
-                <a href="#"><img src="{{ url_for('static', filename='html/images/1.jpg') }}" alt=""></a>
-                </li>
-                <li style="opacity: 0;">
-                    <a href="#"><img src="{{ url_for('static', filename='html/images/2.jpg') }}" alt=""></a>
-                </li>
-                <li style="opacity: 1;">
-                    <a href="javascript:"><img src="{{ url_for('static', filename='html/images/3.jpg') }}" alt=""></a>
-                </li>
-                <li style="opacity: 0;">
-                    <a href="javascript:"><img src="{{ url_for('static', filename='html/images/4.jpg') }}" alt=""></a>
-                </li>
-                <li style="opacity: 0;">
-                    <a href="javascript:"><img src="{{ url_for('static', filename='html/images/5.jpg') }}" alt=""></a>
-                </li>
-            </ul>
-            <a href="javascript:;" class="ctrl-slide ck-prev" style="opacity: 0.6;">上一张</a> <a href="javascript:;" class="ctrl-slide ck-next" style="opacity: 0.6;">下一张</a>
-            <div class="ck-slidebox" style="margin-left: -54px;">
-                <div class="slideWrap">
-                    <ul class="dot-wrap">
-                        <li class=""><em>1</em></li>
-                        <li class=""><em>2</em></li>
-                        <li class="current"><em>3</em></li>
-                        <li class=""><em>4</em></li>
-                        <li class=""><em>5</em></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
 </div>
 {% endblock %}
 
