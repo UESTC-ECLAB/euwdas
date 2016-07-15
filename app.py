@@ -3,6 +3,7 @@ from flask import Flask, g, request
 import random
 from flask import Flask, send_from_directory, session, url_for, jsonify, abort, render_template, flash, redirect
 from flask.ext.login import LoginManager, current_user
+from flask_apscheduler import APScheduler
 import os
 import sys
 import random
@@ -13,7 +14,7 @@ import time
 
 from form.user import *
 from handler.user import User
-
+from timer import SchedulerConfig
 
 from module.auth import auth
 from module.travelrec import travelrec
@@ -23,15 +24,18 @@ sys.setdefaultencoding('utf-8')
 client = MongoClient()
 client = MongoClient('localhost', 27017)
 login_manager = LoginManager()
+scheduler = APScheduler()
 
 def create_app():
     _app = Flask(__name__)
     _app.config.from_pyfile('global_settings.py')
+    _app.config.from_object(SchedulerConfig())
     # mongo.init_app(_app)
     # configure_logging(_app)
     configure_jinja2(_app)
     login_manager.setup_app(_app)
     login_manager.login_view = 'login'
+    scheduler.init_app(_app)
     _app.register_blueprint(auth)
     _app.register_blueprint(travelrec)
 
