@@ -160,12 +160,19 @@ class memectSpider(baseSpider):
                             db.newstag.insert_one(post_tag)
             # break    
 
+def mutispider():
+    url_list = ['http://forum.memect.com/page/'+str(i) for i in range(1,607)]
+    # print url_list
+    pool = ThreadPool(5)
+    pool.map(memectSpider().mainSpider, url_list)
+
 if __name__ == '__main__':
-    m = memectSpider()
-    url = 'http://forum.memect.com/page/'
-    for i in range(1,607):
-        # print i
-        url_ = url + str(i)
-        print url_
-        m.mainSpider(url_)
-    # m.mainSpider(url)
+    # m = memectSpider()
+    # url = 'http://forum.memect.com/page/'
+    # for i in range(1,607):
+    #     # print i
+    #     url_ = url + str(i)
+    #     print url_
+    #     m.mainSpider(url_)
+    # # m.mainSpider(url)
+    mutispider()
