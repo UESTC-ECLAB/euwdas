@@ -381,8 +381,9 @@
 
 @font-face {
   font-family: 'octicons';
-  src: url("/static/octicons/octicons-d3d0b82bf791ac147d72bbf0287cdde8ee5c97b8.eot");
+/*  src: url("/static/octicons/octicons-d3d0b82bf791ac147d72bbf0287cdde8ee5c97b8.eot");
   src: url("/static/octicons/octicons-d3d0b82bf791ac147d72bbf0287cdde8ee5c97b8.eot#iefix") format("embedded-opentype"), url("/static/octicons/octicons-a60d585f754059c3c2ef731f853c38c157040b9c.woff") format("woff"), url("/static/octicons/octicons-8b97c2cd5068ec4620cbde3140db257b1924a192.ttf") format("truetype"), url("/static/octicons/octicons-a8248bbb3baccca60948d81d69e3406b71956a69.svg#octicons") format("svg");
+*/  
   font-weight: normal;
   font-style: normal; }
 .octicon {
@@ -932,11 +933,11 @@
 
 html {
   background: #e3e3e3;
-  background: transparent url("http://ww2.sinaimg.cn/large/62755f82gw1ejqgbgc1hwj219s0wdti5.jpg") repeat scroll 0 0; }
+  background: transparent url(/static/html/images/mainbackground.jpg) repeat scroll 0 0; }
 
 body {
   background: #e3e3e3;
-  background: transparent url("http://ww2.sinaimg.cn/large/62755f82gw1ejqgbgc1hwj219s0wdti5.jpg") repeat scroll 0 0;
+  background: transparent url(/static/html/images/mainbackground.jpg) repeat scroll 0 0;
   font-family: "Hiragino Kaku Gothic ProN", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti;
   font-size: 13px; }
 
