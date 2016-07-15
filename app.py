@@ -15,7 +15,7 @@ import time
 from form.user import *
 from handler.user import User
 from timer import SchedulerConfig
-
+from core.news.homepage import *
 from module.auth import auth
 from module.travelrec import travelrec
 
@@ -25,6 +25,7 @@ client = MongoClient()
 client = MongoClient('localhost', 27017)
 login_manager = LoginManager()
 scheduler = APScheduler()
+db = client.eclab
 
 def create_app():
     _app = Flask(__name__)
@@ -41,7 +42,9 @@ def create_app():
 
     @_app.route('/', methods=['GET'])
     def homepage():
-        return render_template('index.html')
+        template_variables = homepage()
+        print template_variables
+        return render_template('index.html', template_variables = template_variables)
 
     @_app.route('/develop')   
     def develppage():
@@ -50,7 +53,6 @@ def create_app():
     @_app.before_request
     def before_request():
         g.user = current_user
-
     return _app
 
 def configure_jinja2(app):

@@ -13,6 +13,6 @@ app = create_app()
 if __name__ == '__main__':
     scheduler.start()
     app.run(host='0.0.0.0', threaded=True)
-    app.debug = False
+    app.debug = True
     server = WSGIServer(("", 80), app)
     server.serve_forever()

@@ -22,6 +22,4 @@ REDIS_CHANNEL_NOTIFY = 'notify'
 #数据库配置
 
 
-
-
 LOG_PATH = '/var/log/eclab'
