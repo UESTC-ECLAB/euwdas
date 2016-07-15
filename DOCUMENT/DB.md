@@ -49,3 +49,12 @@ http://forum.memect.com/page/1/
 	"userid" : 0,
 	"isanonymous" : 0,
 }
+
+5.timer
+{
+	"_id" : ObjectId("577105f268836322a47a5bd2"),
+	"task_time" : "XXX",
+	"task_name" : "XXX",
+	"success" : "yes",
+	"failed_reason" : "XXX"
+}

@@ -5,6 +5,11 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 abspath = os.getcwd()
 from spider.spider_memect import memectSpider
+from pymongo import MongoClient
+import time
+client = MongoClient()
+client = MongoClient('localhost', 27017)
+db = client.eclab
 
 class SchedulerConfig(object):
     JOBS = [
@@ -13,7 +18,7 @@ class SchedulerConfig(object):
             'func': 'timer:test',
             'args': (1, 2),
             'trigger': 'interval',
-            'seconds': 10
+            'seconds': 10000
         },
         {
             'id': 'memect',
@@ -33,12 +38,18 @@ def test(a, b):
     print a,b
 
 def memect():
-	url = ['http://forum.memect.com/page/1',
-		   'http://forum.memect.com/page/2',
-		   'http://forum.memect.com/page/3',
-		  ]
-	for i in range(len(url)):
-		memectSpider().mainSpider(url[i])
-
-if __name__ == '__main__':
-	print 'tt'
+    post = {"task_time":str(time.strftime("%Y-%m-%d %H:%M", time.localtime())), 
+            "task_name" : "memect_spider",
+            }
+    url = ['http://forum.memect.com/page/1',
+           'http://forum.memect.com/page/2',
+           'http://forum.memect.com/page/3',
+          ]
+    try:
+        for i in range(len(url)):
+            memectSpider().mainSpider(url[i])
+        post["success"] = 'yes'
+    except:
+        post["success"] = 'no'
+        post["failed_reason"] = 'some reason'
+    db.timer.insert_one(post)
