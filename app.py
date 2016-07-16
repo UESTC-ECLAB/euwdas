@@ -42,9 +42,7 @@ def create_app():
 
     @_app.route('/', methods=['GET'])
     def homepage():
-        template_variables = homepage()
-        print template_variables
-        return render_template('index.html', template_variables = template_variables)
+        return render_template('index.html', template_variables = homepage_rec())
 
     @_app.route('/develop')   
     def develppage():

@@ -17,6 +17,15 @@ class memectSpider(baseSpider):
     def __init__(self):
         pass
 
+    def generateHtml(self, url):
+        r = requests.get(url, timeout=10)
+        if r.encoding != 'utf-8':r.encoding='utf-8'
+        html = r.content
+        html.replace(u'&nbsp;','***')
+        html = html.split(u'&nbsp;')
+        html = '***'.join(html)
+        return html
+
     def generateUrlList(self, url):
         html = self.generateHtml(url)
         soup = BeautifulSoup(html)
@@ -142,3 +151,9 @@ if __name__ == '__main__':
     # # m.mainSpider(url)
     # mutispider()
     print 'test'
+    url = ['http://forum.memect.com/page/1',
+           'http://forum.memect.com/page/2',
+           'http://forum.memect.com/page/3']
+    for i in range(len(url)):
+        memectSpider().mainSpider(url[i])
+        print i

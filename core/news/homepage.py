@@ -11,7 +11,7 @@ client = MongoClient()
 client = MongoClient('localhost', 27017)
 db = client.eclab
 
-def homepage():
+def homepage_rec():
     #TODO:user_id
     template_variables = {}
     rec_news = db.news.find({"show":1}).sort("news_time",pymongo.DESCENDING)
