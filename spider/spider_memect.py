@@ -15,7 +15,7 @@ db = client.eclab
 
 class memectSpider(baseSpider):
     def __init__(self):
-        pass
+        self.dropwords = [u'日报',u'iOS',u'Android']
 
     def generateHtml(self, url):
         r = requests.get(url, timeout=10)
@@ -45,12 +45,16 @@ class memectSpider(baseSpider):
         return url_list
 
     def extractContent(self, url):
+        dropwords = self.dropwords
         # print url
         html = self.generateHtml(url)
         soup = BeautifulSoup(html)
 
         try:
             title = soup.find('h1', {'class' : 'title-thread'}).get_text()
+            for i in range(len(dropwords)):
+                if dropwords[i] in title:
+                    return 'None'
         except:
             return 'None'
         # print title
@@ -59,6 +63,19 @@ class memectSpider(baseSpider):
             soup = soup.find('div', {'class' : 'items-thread item-thread clearfix'})
         except:
             return 'None'
+
+        # 标签
+        try:
+            tag_soup = soup.find('div', {'class':'keyword-wrapper'}).find_all('span')
+            tags = [tag_soup[i].string for i in range(len(tag_soup))]
+            if tags != []:
+                for i in range(len(tags)):
+                    if tags[i] in dropwords:
+                        return 'None'
+        except:
+            tags = []
+        # print tags
+
         
         # 作者
         try:
@@ -73,14 +90,6 @@ class memectSpider(baseSpider):
         except:
             return 'None'
         # print news_avatar
-
-        # 标签
-        try:
-            tag_soup = soup.find('div', {'class':'keyword-wrapper'}).find_all('span')
-            tags = [tag_soup[i].string for i in range(len(tag_soup))]
-        except:
-            tags = []
-        # print tags
 
         # 时间
         try:

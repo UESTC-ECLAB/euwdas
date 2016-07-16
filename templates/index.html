@@ -48,26 +48,35 @@
             {% if template_variables.homepage_news %}
                 {% for one_news in template_variables.homepage_news %}
                 <div class="topic-item">
-                    <a href="/">
-                        <img src="./" alt="" class="avatar">
+                    <a href="/news">
+                        <img src="{{ one_news.news_avatar }}" alt="" class="avatar">
                     </a>
                     <div class="main">
-                    <h3 class="title">
-                        <a href="/">新闻标题1</a>
-                    </h3>
-                    <div class="meta">
-                        <span class="node"><a href="/">tag1</a></span>
-                        <span class="node"><a href="/">tag2</a></span> • 
-                        <span class="username">
-                            <a href="/">作者1</a>
+                        <h3 class="title">
+                            <a href="/">{{ one_news.title }}</a>
+                        </h3>
+                        <div class="meta">
+                            {% if one_news.tags %}
+                                {% for tag in one_news.tags %}
+                                <span class="node"><a href="/">{{ tag }}</a></span>
+                                {% endfor %}
+                            {% endif %}
+                             • 
+                            <span class="username">
+                                <a href="/">{{ one_news.author }}</a>
                             </span> • 
-                            <span class="last-touched">7 月前</span> • 
-                            <span class="last-reply-username">来自
-                            <a href="/"><strong>XX网站</strong></a>
-                        </span>
+                            <span class="last-touched">{{ one_news.news_time }}</span>
+                            {% if one_news.comefrom %}
+                             • <span class="last-reply-username">来自
+                                <a href="/"><strong>XX网站</strong></a>
+                            </span>
+                            {% endif %}
+
+                        </div>
                     </div>
-                </div>
-                    <div class="count"><a href="/">阅读3</a></div>
+                    {% if one_news.readtime %}
+                        <div class="count"><a href="/">阅读3</a></div>
+                    {% endif %}
                 </div>
                 {% endfor %}
             {% endif %}
