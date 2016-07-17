@@ -127,7 +127,7 @@ class memectSpider(baseSpider):
         url_list = self.generateUrlList(url)
         for i in range(len(url_list)):
             link = url_list[i]
-            find = db.news.find_one({"original_url":""})
+            find = db.news.find_one({"original_url":link})
             if str(find) == 'None':
                 post = self.extractContent(link)
                 if post != 'None':
