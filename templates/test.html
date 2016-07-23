@@ -1,0 +1,94 @@
+{% extends 'layout.html' %}
+
+{% block javascript %}
+<script type="text/javascript" language="javascript">
+function testAjax() {
+            $.ajax({
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                url: "http://eclab.xyz/scheduler/jobs/memect",//传入后台的地址/方法
+                data: "null",//参数，这里是一个json语句
+                success: function (data) {
+                    var result = data.d;
+                    alert(result);
+                },
+                error: function (err) {
+                    alert("err:" + err);
+                }
+            });
+        }
+$.ajax({
+    type: "GET",
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    async : false, 
+    url: "/scheduler/jobs/memect",//传入后台的地址/方法
+    data: "null",//参数，这里是一个json语句
+    success: function (data) {
+        var result = data.id;
+        // alert(result);
+        // alert(data.next_run_time);
+        console.log(data);
+        $("#id").append("<p>"+data.next_run_time+"</p>")
+
+    },
+    error: function (err) {
+        alert("err:" + err);
+    }
+});
+</script>
+
+<script>
+        $(function(){
+            $('.box').append('<li score="99">小明</li>');
+            $('.box').append('<li score="98">小朋</li>');
+            $('.box').append('<li score="100">小月</li>');
+
+            // 获取值，则可以使用任意方式，比如循环
+            $('.box li').each(function(){});
+            // 也可以使用 eq 获取指定位置的，如
+            $('.box li').eq(0).attr('score'); // 小明的分数
+        });
+    </script>
+{% endblock %}
+
+{% block main %}
+<!-- 主体 -->
+    <ul class="box"></ul>
+    <div class="row-fluid">
+    <!-- 左边栏 -->
+        <div class="span9 newleft">
+            <div class="sidebox container-box mt10 weixin">
+                <div class="ui-header">
+                    <span class="title">栏目1,data.id</span>
+                </div>
+                <div class="ui-header">
+                    <span class="title">栏目2</span>
+                </div>
+            </div>
+        </div>
+    <!-- 右边栏 -->
+        <div class="span3 newright">
+            <form id="form1" runat="server">
+                <div>
+                    <button >用button测试ajax</button>
+                    <input type="button" value="testAjax"  />
+                </div>
+            </form>
+            <div id="id">
+                
+            </div>
+            <div class="sidebox container-box mt10 weixin">
+                <div class="ui-header">
+                    <span class="title">还在建设。。憋急</span>
+                </div>
+                <div class="ui-content">
+                    <!-- <span class="title">栏目内容</span> -->
+                    <img src="{{ url_for('static', filename='html/images/develop.jpg') }}" alt="" />
+                </div>
+            </div>
+        </div>
+        <!-- 右边栏结束 -->
+    </div>
+{% endblock %}

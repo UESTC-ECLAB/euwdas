@@ -48,6 +48,10 @@ def create_app():
     def develppage():
         return render_template('develop.html') 
 
+    @_app.route('/test')   
+    def testpage():
+        return render_template('test.html') 
+
     @_app.before_request
     def before_request():
         g.user = current_user
