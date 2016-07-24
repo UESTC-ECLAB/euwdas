@@ -162,3 +162,11 @@
     </div>
     </div>
 {% endblock %}
+
+{% block display %}
+{% if current_user.username %}
+<div>{{ current_user.username }}</div>
+{% else %}
+<div>anonymous</div>
+{% endif %}
+{% endblock %}
